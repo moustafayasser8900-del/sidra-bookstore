@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مكتبة سدرة | Sidra Bookstore</title>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f0f11;
+            --bg-card: #18181c;
+            --bg-accent: #222228;
+            --gold-primary: #d4af37;
+            --gold-hover: #f3e5ab;
+            --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7);
+            --text-main: #f5f5f7;
+            --text-muted: #a1a1aa;
+            --border-color: #2a2a32;
+            --radius-lg: 16px;
+            --radius-sm: 8px;
+            --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold-primary) var(--bg-dark);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header & Navbar */
+        header {
+            background-color: rgba(15, 15, 17, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--gold-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-size: 1.4rem;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .logo-text h1 {
+            font-size: 1.4rem;
+            color: var(--gold-primary);
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        .logo-text span {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn-action {
+            background: var(--bg-accent);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .btn-action:hover {
+            border-color: var(--gold-primary);
+            color: var(--gold-primary);
+        }
+
+        .btn-gold {
+            background: var(--gold-gradient);
+            color: #000;
+            border: none;
+            font-weight: 700;
+        }
+
+        .btn-gold:hover {
+            opacity: 0.95;
+            color: #000;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .cart-badge {
+            background: var(--gold-primary);
+            color: #000;
+            font-size: 0.75rem;
+            font-weight: 800;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Hero Banner */
+        .hero {
+            background: linear-gradient(rgba(15, 15, 17, 0.85), rgba(15, 15, 17, 0.95)), url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80') center/cover;
+            padding: 4rem 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            color: var(--gold-primary);
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        /* Categories Filter */
+        .categories {
+            max-width: 1200px;
+            margin: 2rem auto 1rem;
+            padding: 0 1.5rem;
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .cat-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .cat-btn.active, .cat-btn:hover {
+            background: var(--gold-primary);
+            color: #000;
+            border-color: var(--gold-primary);
+            font-weight: 700;
+        }
+
+        /* Products Grid */
+        .products-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-main);
+        }
+
+        .section-title i {
+            color: var(--gold-primary);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold-primary);
+            box-shadow: var(--shadow);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background-color: var(--bg-accent);
+        }
+
+        .product-info {
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-cat {
+            font-size: 0.75rem;
+            color: var(--gold-primary);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .product-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .product-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--gold-primary);
+        }
+
+        .btn-add-cart {
+            background: var(--bg-accent);
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-add-cart:hover {
+            background: var(--gold-primary);
+            color: #000;
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(220, 53, 69, 0.8);
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .product-card:hover .delete-btn {
+            opacity: 1;
+        }
+
+        /* Cart & Admin Drawers / Modals */
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: none;
+        }
+
+        .drawer {
+            position: fixed;
+            top: 0;
+            left: -400px;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background: var(--bg-card);
+            z-index: 1001;
+            transition: left 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .drawer.active {
+            left: 0;
+        }
+
+        .drawer-header {
+            padding: 1.2rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .drawer-header h3 {
+            color: var(--gold-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 12px;
+            background: var(--bg-accent);
+            padding: 10px;
+            border-radius: var(--radius-sm);
+            align-items: center;
+        }
+
+        .cart-item-img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .cart-item-price {
+            font-size: 0.85rem;
+            color: var(--gold-primary);
+        }
+
+        .cart-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 5px;
+        }
+
+        .btn-qty {
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .cart-footer {
+            padding: 1.2rem;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-dark);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--bg-accent);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            color: var(--text-main);
+            outline: none;
+        }
+
+        .form-control:focus {
+            border-color: var(--gold-primary);
+        }
+
+        /* Modal Admin */
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            width: 90%;
+            max-width: 500px;
+            z-index: 1002;
+            display: none;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .modal.active {
+            display: block;
+        }
+
+        /* Image Capture / Upload Area */
+        .image-upload-wrapper {
+            border: 2px dashed var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            background: var(--bg-accent);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .image-upload-wrapper:hover {
+            border-color: var(--gold-primary);
+        }
+
+        .image-preview {
+            width: 100%;
+            max-height: 150px;
+            object-fit: contain;
+            display: none;
+            margin-top: 10px;
+            border-radius: 6px;
+        }
+
+        /* Footer & Info */
+        footer {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 1.5rem;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-info h4 {
+            color: var(--gold-primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-info p {
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+
+        .footer-info p i {
+            color: var(--gold-primary);
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .hero h2 { font-size: 1.8rem; }
+            .drawer { max-width: 100%; left: -100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon"><i class="fa-solid fa-book-open"></i></div>
+                <div class="logo-text">
+                    <h1>مكتبة سدرة</h1>
+                    <span>SIDRA BOOKSTORE</span>
+                </div>
+            </a>
+            <div class="nav-actions">
+                <button class="btn-action" onclick="toggleAdminModal()">
+                    <i class="fa-solid fa-plus-circle"></i>
+                    <span>إضافة منتج</span>
+                </button>
+                <button class="btn-action btn-gold" onclick="toggleCart()">
+                    <i class="fa-solid fa-shopping-bag"></i>
+                    <span>السلة</span>
+                    <div class="cart-badge" id="cartBadge">0</div>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>مكتبة سدرة - عالمك للروايات والخدمات المكتبية</h2>
+            <p>أطلب كافة الكتب، الأدوات المدرسية، والمطبوعات وتصلك فوراً عبر الواتساب. خيارك الأول للجودة والأناقة.</p>
+        </div>
+    </section>
+
+    <!-- Categories Filter -->
+    <div class="categories" id="categoriesContainer">
+        <button class="cat-btn active" onclick="filterProducts('all')">الكل</button>
+        <button class="cat-btn" onclick="filterProducts('books')">روايات وكتب</button>
+        <button class="cat-btn" onclick="filterProducts('stationery')">أدوات مكتبية</button>
+        <button class="cat-btn" onclick="filterProducts('services')">طباعة وخدمات</button>
+    </div>
+
+    <!-- Main Products Section -->
+    <main class="products-section">
+        <div class="section-title">
+            <i class="fa-solid fa-layer-group"></i>
+            <h3>المنتجات المتاحة</h3>
+        </div>
+        <div class="products-grid" id="productsGrid">
+            <!-- Dynamic Products Loading -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-info">
+                <h4>عن مكتبة سدرة</h4>
+                <p>توفير أفضل الكتب، المذكرات، والأدوات المكتبية بأسعار تنافسية وخيارات طلب سهلة عبر الواتساب.</p>
+            </div>
+            <div class="footer-info">
+                <h4>معلومات التواصل والعنوان</h4>
+                <p><i class="fa-solid fa-location-dot"></i> ابيس القرية التانية بجوار محل طه للاحذية</p>
+                <p><i class="fa-brands fa-whatsapp"></i> واتساب الطلبات: 0120105683</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Drawer & Overlay -->
+    <div class="drawer-overlay" id="overlay" onclick="closeAllDrawers()"></div>
+
+    <div class="drawer" id="cartDrawer">
+        <div class="drawer-header">
+            <h3><i class="fa-solid fa-shopping-cart"></i> سلة التسوق</h3>
+            <button class="btn-close" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Dynamic Cart Content -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>الإجمالي:</span>
+                <span id="cartTotalSum" style="color: var(--gold-primary);">0 ج.م</span>
+            </div>
+
+            <!-- Customer Checkout Form -->
+            <div class="form-group">
+                <label><i class="fa-solid fa-user"></i> اسمك الكامل:</label>
+                <input type="text" id="custName" class="form-control" placeholder="أدخل اسمك الكريم">
+            </div>
+            <div class="form-group">
+                <label><i class="fa-solid fa-map-marker-alt"></i> العنوان التفصيلي:</label>
+                <input type="text" id="custAddress" class="form-control" placeholder="مثال: أبيس - شارع التلفزيون">
+            </div>
+            <button class="btn-action btn-gold" style="width: 100%; justify-content: center; padding: 0.9rem;" onclick="checkoutWhatsApp()">
+                <i class="fa-brands fa-whatsapp"></i> إرسال الطلب عبر الواتساب
+            </button>
+        </div>
+    </div>
+
+    <!-- Admin Add Product Modal -->
+    <div class="modal" id="adminModal">
+        <div class="drawer-header" style="padding:0 0 1rem 0; margin-bottom:1rem;">
+            <h3><i class="fa-solid fa-plus-circle"></i> إضافة منتج جديد للمكتبة</h3>
+            <button class="btn-close" onclick="toggleAdminModal()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <form id="addProductForm" onsubmit="handleAddProduct(event)">
+            <div class="form-group">
+                <label>اسم المنتج / الكتاب:</label>
+                <input type="text" id="pName" class="form-control" required placeholder="مثال: رواية أرض زيكولا">
+            </div>
+            <div class="form-group">
+                <label>السعر (بالجنيه):</label>
+                <input type="number" id="pPrice" class="form-control" required placeholder="75">
+            </div>
+            <div class="form-group">
+                <label>القسم:</label>
+                <select id="pCategory" class="form-control" required>
+                    <option value="books">روايات وكتب</option>
+                    <option value="stationery">أدوات مكتبية</option>
+                    <option value="services">طباعة وخدمات</option>
+                </select>
+            </div>
+
+            <!-- Image Capture / Select Area -->
+            <div class="form-group">
+                <label>صورة المنتج (تصوير بالهاتف أو اختيار صورة):</label>
+                <div class="image-upload-wrapper" onclick="document.getElementById('pCameraInput').click()">
+                    <i class="fa-solid fa-camera" style="font-size:2rem; color:var(--gold-primary); margin-bottom:8px;"></i>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">إضغط هنا لالتقاط صورة أو اختيار ملف</p>
+                    <input type="file" id="pCameraInput" accept="image/*" capture="environment" style="display:none" onchange="previewImage(event)">
+                    <img id="imgPreview" class="image-preview" alt="معاينة الصورة">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>وصف قصير (اختياري):</label>
+                <input type="text" id="pDesc" class="form-control" placeholder="طبعة فاخرة 2026">
+            </div>
+            <button type="submit" class="btn-action btn-gold" style="width: 100%; justify-content: center; padding: 0.8rem;">
+                <i class="fa-solid fa-check"></i> حفظ وإضافة للمتجر
+            </button>
+        </form>
+    </div>
+
+    <!-- Application Script Logic -->
+    <script>
+        // Initial Products Array
+        const defaultProducts = [
+            {
+                id: 1,
+                name: "رواية أرض زيكولا",
+                category: "books",
+                price: 85,
+                desc: "الجزء الأول - طبعة جديدة فاخرة",
+                image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&q=80&w=400"
+            },
+            {
+                id: 2,
+                name: "كتاب لأنك الله",
+                category: "books",
+                price: 65,
+                desc: "رحلة إلى السماء السابعة - علي الفيفي",
+                image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&q=80&w=400"
+            },
+            {
+                id: 3,
+                name: "كشكول سلك فاخر 100 ورقة",
+                category: "stationery",
+                price: 35,
+                desc: "غلاف مقوى ديزاين أسود وذهبي",
+                image: "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&q=80&w=400"
+            },
+            {
+                id: 4,
+                name: "طقم أقلام جاف جل (5 ألوان)",
+                category: "stationery",
+                price: 25,
+                desc: "أقلام عالية الجودة للكتابة السريعة",
+                image: "https://images.unsplash.com/photo-1585336261026-875a60a1c92f?auto=format&fit=crop&q=80&w=400"
+            },
+            {
+                id: 5,
+                name: "حاسبة علمية Casio FX-991",
+                category: "stationery",
+                price: 450,
+                desc: "مناسبة لطلاب الثانونية العامة والجامعات",
+                image: "https://images.unsplash.com/photo-1611125832047-1d7ad1e8e48d?auto=format&fit=crop&q=80&w=400"
+            },
+            {
+                id: 6,
+                name: "حزمة أوراق A4 طباعة (500 ورقة)",
+                category: "services",
+                price: 160,
+                desc: "ورق تصوير فاخر 80 جرام",
+                image: "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&q=80&w=400"
+            }
+        ];
+
+        let products = JSON.parse(localStorage.getItem('sidra_products')) || defaultProducts;
+        let cart = JSON.parse(localStorage.getItem('sidra_cart')) || [];
+        let uploadedImageBase64 = '';
+
+        // Save State to LocalStorage
+        function saveState() {
+            localStorage.setItem('sidra_products', JSON.stringify(products));
+            localStorage.setItem('sidra_cart', JSON.stringify(cart));
+            renderProducts();
+            renderCart();
+        }
+
+        // Render Products Grid
+        function renderProducts(filterCat = 'all') {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+
+            const filtered = filterCat === 'all' 
+                ? products 
+                : products.filter(p => p.category === filterCat);
+
+            if(filtered.length === 0) {
+                grid.innerHTML = `<p style="color:var(--text-muted); grid-column: 1/-1; text-align:center;">لا توجد منتجات متوفرة حالياً في هذا القسم.</p>`;
+                return;
+            }
+
+            filtered.forEach(p => {
+                grid.innerHTML += `
+                    <div class="product-card">
+                        <button class="delete-btn" onclick="deleteProduct(${p.id})" title="حذف المنتج"><i class="fa-solid fa-trash"></i></button>
+                        <img src="${p.image}" class="product-img" alt="${p.name}">
+                        <div class="product-info">
+                            <span class="product-cat">${getCatName(p.category)}</span>
+                            <h4 class="product-title">${p.name}</h4>
+                            <p class="product-desc">${p.desc || ''}</p>
+                            <div class="product-bottom">
+                                <span class="product-price">${p.price} ج.م</span>
+                                <button class="btn-add-cart" onclick="addToCart(${p.id})" title="إضافة للسلة">
+                                    <i class="fa-solid fa-cart-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function getCatName(cat) {
+            switch(cat) {
+                case 'books': return 'روايات وكتب';
+                case 'stationery': return 'أدوات مكتبية';
+                case 'services': return 'طباعة وخدمات';
+                default: return 'عام';
+            }
+        }
+
+        // Category Filter Navigation
+        function filterProducts(cat) {
+            document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderProducts(cat);
+        }
+
+        // Cart Drawer Operations
+        function toggleCart() {
+            const drawer = document.getElementById('cartDrawer');
+            const overlay = document.getElementById('overlay');
+            drawer.classList.toggle('active');
+            overlay.style.display = drawer.classList.contains('active') ? 'block' : 'none';
+        }
+
+        function closeAllDrawers() {
+            document.getElementById('cartDrawer').classList.remove('active');
+            document.getElementById('adminModal').classList.remove('active');
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        function addToCart(id) {
+            const item = cart.find(c => c.id === id);
+            if(item) {
+                item.qty++;
+            } else {
+                const prod = products.find(p => p.id === id);
+                cart.push({ ...prod, qty: 1 });
+            }
+            saveState();
+            toggleCart();
+        }
+
+        function updateQty(id, change) {
+            const item = cart.find(c => c.id === id);
+            if(item) {
+                item.qty += change;
+                if(item.qty <= 0) {
+                    cart = cart.filter(c => c.id !== id);
+                }
+            }
+            saveState();
+        }
+
+        function renderCart() {
+            const cartContainer = document.getElementById('cartItems');
+            const cartBadge = document.getElementById('cartBadge');
+            const cartTotalSum = document.getElementById('cartTotalSum');
+            
+            cartContainer.innerHTML = '';
+            let total = 0;
+            let count = 0;
+
+            cart.forEach(item => {
+                total += item.price * item.qty;
+                count += item.qty;
+                cartContainer.innerHTML += `
+                    <div class="cart-item">
+                        <img src="${item.image}" class="cart-item-img">
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-price">${item.price} ج.م</div>
+                            <div class="cart-controls">
+                                <button class="btn-qty" onclick="updateQty(${item.id}, -1)">-</button>
+                                <span>${item.qty}</span>
+                                <button class="btn-qty" onclick="updateQty(${item.id}, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            cartBadge.innerText = count;
+            cartTotalSum.innerText = `${total} ج.م`;
+        }
+
+        // Admin Modal Operations
+        function toggleAdminModal() {
+            const modal = document.getElementById('adminModal');
+            const overlay = document.getElementById('overlay');
+            modal.classList.toggle('active');
+            overlay.style.display = modal.classList.contains('active') ? 'block' : 'none';
+        }
+
+        // Preview Captured Image
+        function previewImage(event) {
+            const file = event.target.files[0];
+            if(file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadedImageBase64 = e.target.result;
+                    const preview = document.getElementById('imgPreview');
+                    preview.src = uploadedImageBase64;
+                    preview.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Add Product Form Submit
+        function handleAddProduct(e) {
+            e.preventDefault();
+            const name = document.getElementById('pName').value;
+            const price = parseFloat(document.getElementById('pPrice').value);
+            const category = document.getElementById('pCategory').value;
+            const desc = document.getElementById('pDesc').value;
+
+            // Fallback image if none captured
+            const image = uploadedImageBase64 || 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&q=80&w=400';
+
+            const newProd = {
+                id: Date.now(),
+                name,
+                price,
+                category,
+                desc,
+                image
+            };
+
+            products.unshift(newProd);
+            saveState();
+
+            // Reset Form & Close
+            document.getElementById('addProductForm').reset();
+            document.getElementById('imgPreview').style.display = 'none';
+            uploadedImageBase64 = '';
+            toggleAdminModal();
+        }
+
+        // Delete Product
+        function deleteProduct(id) {
+            if(confirm('هل أنت تأكد من حذف هذا المنتج من المكتبة؟')) {
+                products = products.filter(p => p.id !== id);
+                cart = cart.filter(c => c.id !== id);
+                saveState();
+            }
+        }
+
+        // Send Order to WhatsApp
+        function checkoutWhatsApp() {
+            if(cart.length === 0) {
+                alert('سلة التسوق فارغة، برجاء إضافة منتجات أولاً.');
+                return;
+            }
+
+            const name = document.getElementById('custName').value.trim();
+            const address = document.getElementById('custAddress').value.trim();
+
+            if(!name || !address) {
+                alert('برجاء كتابة الاسم والعنوان لإتمام الطلب.');
+                return;
+            }
+
+            let phone = "20120105683"; // WhatsApp Number 0120105683
+            let message = `*طلب جديد - مكتبة سدرة* 📚✨\n\n`;
+            message += `*الاسم:* ${name}\n`;
+            message += `*العنوان:* ${address}\n\n`;
+            message += `*تفاصيل الطلب:*\n`;
+
+            let total = 0;
+            cart.forEach((item, idx) => {
+                let sum = item.price * item.qty;
+                total += sum;
+                message += `${idx + 1}. ${item.name} (${item.qty} × ${item.price} ج.م) = ${sum} ج.م\n`;
+            });
+
+            message += `\n*الإجمالي الكلي:* ${total} ج.م\n`;
+            message += `*عنوان المكتبة:* ابيس القرية التانية بجوار محل طه للاحذية\n`;
+
+            let url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        // Initialize App
+        renderProducts();
+        renderCart();
+    </script>
+</body>
+  </html>
