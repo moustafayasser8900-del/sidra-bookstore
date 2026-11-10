@@ -615,6 +615,26 @@
             .drawer { max-width: 100%; left: -100%; }
         }
     </style>
+    /* تخصيص خلفية الموقع بصورة PNG */
+body {
+    position: relative;
+    background-color: #0f0f11 !important;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('maktabet_sedra.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.12; /* شفافة بنسبة بسيطة حتى لا تؤثر على وضوح الكتابة والمنتجات */
+    z-index: -1; /* لتبقى في الخلفية خلف كل محتوى الموقع */
+}
     <script>
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('sw.js');
