@@ -5,11 +5,12 @@
   "display": "standalone",
   "background_color": "#0f0f11",
   "theme_color": "#0f0f11",
+  "orientation": "portrait",
   "description": "متجر وتطبيق مكتبة سدرة للكتب والأدوات المكتبية",
   "icons": [
     {
       "src": "d0f0de45-2bd0-4402-b643-28e38d5cfd66.jpeg",
-      "sizes": "512x512",
+      "sizes": "192x192 512x512",
       "type": "image/jpeg",
       "purpose": "any maskable"
     }
