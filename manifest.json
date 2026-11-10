@@ -9,15 +9,15 @@
   "description": "متجر وتطبيق مكتبة سدرة للكتب والأدوات المكتبية",
   "icons": [
     {
-      "src": "d0f0de45-2bd0-4402-b643-28e38d5cfd66.jpeg",
+      "src": "maktabet_sedra.png",
       "sizes": "192x192",
-      "type": "image/jpeg",
+      "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "d0f0de45-2bd0-4402-b643-28e38d5cfd66.jpeg",
+      "src": "maktabet_sedra.png",
       "sizes": "512x512",
-      "type": "image/jpeg",
+      "type": "image/png",
       "purpose": "any maskable"
     }
   ]
