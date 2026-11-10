@@ -1,24 +1,24 @@
 {
   "name": "مكتبة سدرة",
-  "short_name": "سدرة",
+  "short_name": "سبارا",
   "start_url": "/",
-  "display": "standalone",
+  "عرض": "مستقل"،
   "background_color": "#0f0f11",
   "theme_color": "#0f0f11",
-  "orientation": "portrait",
-  "description": "متجر وتطبيق مكتبة سدرة للكتب والأدوات المكتبية",
-  "icons": [
+  "التوجيه": "الصورة الشخصية"
+  "description": "متجر وتطبيقات مكتبة سدرة للكتب والأدوات المكتبية",
+  "الأيقونات": [
     {
       "src": "d0f0de45-2bd0-4402-b643-28e38d5cfd66.jpeg",
-      "sizes": "192x192",
-      "type": "image/jpeg",
-      "purpose": "any"
+      "الأحجام": "192x192"،
+      "النوع": "صورة/jpeg",
+      "الغرض": "أي"
     },
     {
       "src": "d0f0de45-2bd0-4402-b643-28e38d5cfd66.jpeg",
-      "sizes": "512x512",
-      "type": "image/jpeg",
-      "purpose": "any maskable"
+      الأحجام: 512 × 512
+      "النوع": "صورة/jpeg",
+      "الهدف": "أي شخص يمكن ارتداء قناع له"
     }
   ]
 }
