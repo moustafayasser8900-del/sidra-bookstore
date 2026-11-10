@@ -615,6 +615,11 @@
             .drawer { max-width: 100%; left: -100%; }
         }
     </style>
+    <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
+  }
+    </script>
 </head>
 <body>
 
